@@ -12,7 +12,7 @@
 <body>
     <div class="banner">
         <div class="titulo">
-            <a>AYENDA</a>
+            <a class="encabezado">AYENDA</a>
             <div class="text">
                 <p>La mejor app</p>
                 <p>Para agendar tus clientes</p>
