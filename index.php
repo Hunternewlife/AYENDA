@@ -29,10 +29,28 @@
     </div>
     <div class="negocios">
         <?php 
-            $query = "SELECT rol FROM roles ";
+            $query = "SELECT negocio, foto, diasHabiles, horarioRegular FROM negocios ";
             $result_users = mysqli_query($conn, $query);
             while($row = mysqli_fetch_array($result_users)){ ?>
-            <?php echo $row['rol'] ?>
+            <div class="negocio">
+                <div class="items">
+                    <div class="datos">
+                        <div class="nombreNegocio"><?php echo $row['negocio'] ?></div>
+                        <div class="habil">
+                            <div class="dias"><?php echo $row['diasHabiles'] ?></div>
+                            <div class="horario"><?php echo $row['horarioRegular'] ?></div>
+                        </div>
+                    </div>
+                    <div class="agendar">
+                        <button class="btnAgendar">Agendar</button>
+                    </div>
+                </div>
+                <div class="logos">
+                    <img src="<?php echo $row['foto'] ?>" height="298px" width="298px" alt="">
+                </div>
+            </div>
+                
+            
             <?php } ?>
         
     </div>
