@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/7045981063.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="sources/styles/style.css">
 </head>
-<body>
+<body class="container">
     <div class="banner">
         <div class="titulo">
             <a class="encabezado">AYENDA</a>
@@ -29,7 +29,9 @@
     </div>
     <div class="negocios">
         <?php 
-            $query = "SELECT negocio, foto, diasHabiles, horarioRegular FROM negocios ";
+            $query = "SELECT negocio, foto, diasHabiles, horarioRegular, telefono FROM negocios 
+            inner join supervisores
+            on negocios.idSupervisor = supervisores.IdSupervisor";
             $result_users = mysqli_query($conn, $query);
             while($row = mysqli_fetch_array($result_users)){ ?>
             <div class="negocio">
@@ -40,6 +42,7 @@
                             <div class="dias"><?php echo $row['diasHabiles'] ?></div>
                             <div class="horario"><?php echo $row['horarioRegular'] ?></div>
                         </div>
+                        <div class="telefono"><?php echo $row['telefono'] ?></div>
                     </div>
                     <div class="agendar">
                         <button class="btnAgendar">Agendar</button>
