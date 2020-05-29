@@ -1,0 +1,156 @@
+Tareas grandes
+
+landing page (boostrap)
+php/mysql  'Ivan'
+vue/componentes
+
+back
+front 'carlos'
+
+/*/*/*/*/*/  base de datos */*/*/*/*/*/
+
+
+roles
+idRol, rol
+
+
+supervisores
+idSupervisor, nombre, telefono, rol
+10	maria	312456	jefe  	
+103	juana	132155	empleado 
+
+empleados
+idempleado, nombre, telefono, rol, supervisor
+10	maria	312456	jefe  	0
+103	juana	132155	empleado 10
+
+
+Negocios
+idNegocio, negocio, idSupervisor, foto, diashabiles	horario	horarioweekends     
+05	marias spa	10	maria.jpg	lun-jueve	12-6pm	 12-4
+
+citas 
+idCita negocio hora telefonodelquepidio telefonojefe fecha nombrepersona trabajador 
+1200	05 	1400	320540		312456		10jun	carlos		03
+
+Servicios
+idServicio, servicio, icono
+03	corte	tijeras.jpg	
+
+Subservicio
+id subservico idCategoria servicio categoria, icono
+100	01	03	corte hombre
+101	02	03	corte dama	
+
+
+relacionesServicioNegocio
+idservicio idnegocio
+03	05
+01	05
+02	05
+
+
+relacionServicioNegocioSubservicio
+idservico idnegocio idsubservicio
+03	05	101
+
+
+ecepciones
+idnegocio excepcion
+03	03
+
+
+
+/*/*/*/ consultas
+select negocio, idNegocio from negocios */*/ rellenar sitios
+select idServicio, servicio from servicioNegicio where idnegocio = sesion.negocio
+select categoria from subservicios where idservico:03
+
+select excepcion from excepciones where idesercicio:03
+ if session.idservio : excepcion.idnegocio display none
+
+select idsubservicio from relacionServicioNegocioSubservicio where idnegocio = session.negocio
+and idservicio = session.idservicio
+
+select 
+
+session({negocio: 05, idServicio: 03, idsubservicio:101, date:"6/02/2020", hora:1400, trabajador: johana })
+
+*/*/*/*/*/ flujo del aplicativo */*/*/*/
+
+(cada ves que se pase entre pagina guardamos la seleccion en una session)
+el landing sera una lista de los negocios inscritos en nuestra app/webapp
+funcion para buscar el negocio por nombre
+selecionado el negocio abrira pagina de seleccion de servicio
+selecionado el servicio abrira pagina de seleccion de categoriaservicio
+selecionado la categoriaservicio abrira pagina de seleccion de calendario
+de calendario lo mandara a fecha
+de fecha lo mandar a horas
+de horas le muestra el personal de ese local
+terminado este proceso vamos a agendar donde se pedira nombre y tel 
+con esa terminacion enviamos un mensaje de confirmaacion a ambas partes 
+
+/*/*/* consultas
+create database ayenda;
+use ayenda;
+
+/* 
+roles 1-10 max
+empleados 100+
+jefes 200+
+negocios 300+
+
+*/
+create table roles(
+	idRol int primary key,
+    rol varchar(25)
+);
+
+insert into roles values (1, 'Jefe');
+insert into roles values (2, 'Empleado');
+insert into roles values (3, 'Usuario');
+
+
+create table supervisores(
+	idSupervisor int primary key,
+    nombre varchar(25),
+    apellido varchar(25),
+    telefono bigint(10),
+    idRol int,
+    foreign key(idRol) references roles(idRol) on delete set null
+);
+
+
+insert into supervisores values(200, 'Maria', 'Lopez', 3203495234, 1);
+insert into supervisores values(201, 'Jenny', 'Nivia', 3203495234, 1);
+insert into supervisores values(202, 'Omaira', 'Pena', 3203495234, 1);
+insert into supervisores values(203, 'Luz', 'Marina', 3203495234, 1);
+
+create table negocios(
+	idNegocio int primary key,
+    negocio varchar(25),
+    idsupervisor int,
+    foto varchar(255),
+    diasHabiles varchar(50),
+    horarioRegular varchar(50),
+    horarioFds varchar(50),
+    foreign key (idSupervisor) references supervisores(idSupervisor) on delete set null
+);
+
+insert into negocios values (300, 'agnes', 200, 'sources/images/agnes.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (301, 'Beauty', 200, 'sources/images/beauty1.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (302, 'Salon Beauty', 200, 'sources/images/beauty2.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (303, 'Katie', 200, 'sources/images/katie.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (304, "Misty's", 200, 'sources/images/misty.png', 'lun-vie', '12-4', 'off');
+insert into negocios values (305, 'agnes', 200, 'sources/images/agnes.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (306, 'Beauty', 200, 'sources/images/beauty1.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (307, 'Salon Beauty', 200, 'sources/images/beauty2.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (308, 'Katie', 200, 'sources/images/katie.jpg', 'lun-vie', '12-4', 'off');
+insert into negocios values (309, "Misty's", 200, 'sources/images/misty.png', 'lun-vie', '12-4', 'off');
+
+
+
+DELETE idrol FROM supervisores WHERE idSupervisor = 203;
+drop table negocios;
+select * from supervisores;
+select * from roles;
