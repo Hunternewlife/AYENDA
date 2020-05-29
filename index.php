@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+<?php include("sources/conexion.php")?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,13 +20,21 @@
             </div>
         </div>
         <div class="botones">
-            <div class="comercios"></div>
+            <div class="comercios" message='hellow'> Comercios </div>
             <div class="busqueda">
-                <input type="text" placeholder="buscar">
-                <h2><i class="fas fa-search"></i></h2>
+                <input class="input" type="text" placeholder="buscar">
+                <h2 class="lupa">&#128270</h2>
             </div>
         </div>
     </div>
-    <div class="negocios"></div>
+    <div class="negocios">
+        <?php 
+            $query = "SELECT rol FROM roles ";
+            $result_users = mysqli_query($conn, $query);
+            while($row = mysqli_fetch_array($result_users)){ ?>
+            <?php echo $row['rol'] ?>
+            <?php } ?>
+        
+    </div>
 </body>
 </html>
