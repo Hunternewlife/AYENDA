@@ -72,3 +72,15 @@ function loadBusinesses(businesses) {
 
 // Cargar todos los negocios por defecto
 getAllBusinesses();
+
+// Asignar gestor de eventos para el boton de busqueda
+document.querySelector('.lupa').addEventListener('click', () => {
+  // Aqui obtengo el contenido del input de busqueda
+  let like_key = document.querySelector('.input').value;
+
+  // Aqui realizo la peticion asincrona al servidor para filtrar por los negocios
+  fetch(`./api.php?operation=like_business&like_key=${like_key}`)
+    .then(response => response.json())
+    // Delegar el rellenado de los negocios filtrados
+    .then(data => loadBusinesses(data));
+})
