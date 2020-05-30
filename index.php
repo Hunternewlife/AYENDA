@@ -60,6 +60,6 @@
     </div>
 
     <!-- Delegando parte de la logica al navegador -->
-    <script src="./sources/scripts/index.js"></script>
+    <!-- <script src="./sources/scripts/index.js"></script> -->
 </body>
 </html>
