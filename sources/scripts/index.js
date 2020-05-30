@@ -84,3 +84,7 @@ document.querySelector('.lupa').addEventListener('click', () => {
     // Delegar el rellenado de los negocios filtrados
     .then(data => loadBusinesses(data));
 })
+
+// Asignar gestor de eventos para el boton que vuelve a cargar
+// todos los negocios
+document.getElementById('ver-todos').addEventListener('click', getAllBusinesses);

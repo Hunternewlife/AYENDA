@@ -20,11 +20,12 @@
             </div>
         </div>
         <div class="botones">
-            <div class="comercios" message='hellow'> Comercios </div>
+            <div class="btn-type-1" message='hellow'> Comercios </div>
             <div class="busqueda">
                 <input class="input" type="text" placeholder="buscar">
                 <h2 class="lupa">&#128270</h2>
             </div>
+            <div id="ver-todos" class="btn-type-1" message='hellow'> Ver todos </div>
         </div>
     </div>
     <div class="negocios">
