@@ -28,8 +28,8 @@
         </div>
     </div>
     <div class="negocios">
-        <?php 
-            $query = "SELECT negocio, foto, diasHabiles, horarioRegular, telefono FROM negocios 
+        <?php
+            $query = "SELECT negocio, foto, diasHabiles, horarioRegular, telefono FROM negocios
             inner join supervisores
             on negocios.idSupervisor = supervisores.IdSupervisor";
             $result_users = mysqli_query($conn, $query);
@@ -52,10 +52,13 @@
                     <img src="<?php echo $row['foto'] ?>" height="298px" width="298px" alt="">
                 </div>
             </div>
-                
-            
+
+
             <?php } ?>
-        
+
     </div>
+
+    <!-- Delegando parte de la logica al navegador -->
+    <script src="./sources/scripts/index.js"></script>
 </body>
 </html>
