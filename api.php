@@ -9,7 +9,8 @@ if (array_key_exists("operation", $_GET)) {
 
   // Aqui, todos los negocios
   if ($operation === "all_businesses") {
-    $query = "SELECT * FROM negocios";
+    $query =  "SELECT * FROM negocios AS n ";
+    $query .= "INNER JOIN supervisores AS s ON n.idsupervisor = s.idSupervisor";
     $result = mysqli_query($conn, $query);
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
     echo json_encode($rows);
@@ -22,7 +23,9 @@ if (array_key_exists("operation", $_GET)) {
       $like_key = $_GET["like_key"];
       // Aqui selecciono negocios que contienen la palabra indicada (insensible
       // a mayusculas y minusculas)
-      $query = "SELECT * FROM negocios WHERE negocio LIKE '%$like_key%'";
+      $query =  "SELECT * FROM negocios AS n ";
+      $query .= "INNER JOIN supervisores as s ON n.idsupervisor = s.idSupervisor ";
+      $query .= "WHERE n.negocio LIKE '%$like_key%'";
       $result = mysqli_query($conn, $query);
       $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
       echo json_encode($rows);
